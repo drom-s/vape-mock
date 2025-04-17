@@ -3,32 +3,37 @@
 <html lang='ja'>
 <head>
   <meta charset='UTF-8'>
-  <title>TOPページ（スマホ対応版）</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>統合版 EC トップページ モックアップ</title>
   <style>
     body { font-family: sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
     header {
-      background: #111; color: white; padding: 16px;
-      display: flex; justify-content: space-between; align-items: center;
+      background: #111;
+      color: white;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     header .logo { font-size: 20px; font-weight: bold; }
-    header .icons { display: flex; gap: 16px; font-size: 20px; }
+    header .icons { display: flex; gap: 16px; font-size: 18px; }
     .wrapper { max-width: 1200px; margin: auto; padding: 20px; background: white; }
     .section { margin-bottom: 40px; }
-    .section h2 {
-      font-size: 20px;
-      border-left: 5px solid #00b894;
-      padding-left: 10px;
-      margin-bottom: 16px;
-    }
+    .section h2 { font-size: 22px; margin-bottom: 16px; border-left: 5px solid #00b894; padding-left: 12px; }
     .slider-container {
-      overflow: hidden; border-radius: 8px; height: 250px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      height: 300px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .slider-track {
-      display: flex; width: 300%; animation: slide 18s infinite;
+      display: flex;
+      width: 300%;
+      animation: slide 18s infinite;
     }
     .slider-track img {
-      width: 100%; flex-shrink: 0;
+      width: 100%;
+      flex-shrink: 0;
     }
     @keyframes slide {
       0% { transform: translateX(0); }
@@ -42,12 +47,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       margin-bottom: 12px;
     }
-
-    @media (max-width: 768px) {
-      body { font-size: 15px; }
-      header .icons { gap: 12px; font-size: 24px; }
-      .section h2 { font-size: 18px; }
-    }
+    .text { font-size: 14px; color: #555; margin-bottom: 24px; }
   </style>
 </head>
 <body>
@@ -57,18 +57,51 @@
   </header>
   <div class='wrapper'>
     <div class='section'>
-      <h2>① ファーストビュー</h2>
+      <h2>① ファーストビュー（カルーセルバナー）</h2>
       <div class='slider-container'>
         <div class='slider-track'>
-          <img src='https://tshop.r10s.jp/vapecollection/cabinet/bn/freemax_xfill_top.jpg?fitin=1080%3A1920'>
-          <img src='https://tshop.r10s.jp/vapecollection/cabinet/bn/voopoo_argus-z2_top.jpg?fitin=1080%3A1920'>
-          <img src='https://tshop.r10s.jp/vapecollection/cabinet/empo/con/20250310_new.jpg?fitin=1080%3A1920'>
+          <img src='https://tshop.r10s.jp/vapecollection/cabinet/bn/freemax_xfill_top.jpg?fitin=1080%3A1920' alt='バナー1'>
+          <img src='https://tshop.r10s.jp/vapecollection/cabinet/bn/voopoo_argus-z2_top.jpg?fitin=1080%3A1920' alt='バナー2'>
+          <img src='https://tshop.r10s.jp/vapecollection/cabinet/empo/con/20250310_new.jpg?fitin=1080%3A1920' alt='バナー3'>
         </div>
       </div>
+      <p class='text'>※スライダーは6秒ごとに切り替わります</p>
     </div>
     <div class='section'>
-      <h2>② カテゴリ選択</h2>
-      <img class='image-mock' src='https://placehold.co/1200x300?text=カテゴリ選択'>
+      <h2>② 新着商品・お知らせ（タブ切替）</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=新着商品%2Fお知らせ+タブ切替モック' alt='新着モック'>
+    </div>
+    <div class='section'>
+      <h2>③ ご利用タイプ選択</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=初心者+%2F+リピーター+選択UI' alt='利用タイプ'>
+    </div>
+    <div class='section'>
+      <h2>④ カテゴリから探す</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=デバイス+%2F+リキッド+%2F+ブランド+カテゴリ選択' alt='カテゴリ'>
+    </div>
+    <div class='section'>
+      <h2>⑤ 人気商品ランキング</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=人気ランキング+タブ+UI+イメージ' alt='人気ランキング'>
+    </div>
+    <div class='section'>
+      <h2>⑥ 記事・ブログ特集</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=VAPE%E3%81%AE%E7%9F%A5%E8%AD%98%2F%E7%AF%80%E7%85%99%E8%A8%98%E4%BA%8B%2F%E6%AF%94%E8%BC%83' alt='記事・特集'>
+    </div>
+    <div class='section'>
+      <h2>⑦ レビュー（ピックアップ表示）</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=%E3%83%AC%E3%83%93%E3%83%A5%E3%83%BC%E8%A1%A8%E7%A4%BA+%2F+%E6%84%9F%E6%83%B3%E3%82%B3%E3%83%A1%E3%83%B3%E3%83%88' alt='レビュー表示'>
+    </div>
+    <div class='section'>
+      <h2>⑧ 定期購入の案内</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=%E5%AE%9A%E6%9C%9F%E8%B3%BC%E5%85%A5+%2F+%E3%82%B5%E3%83%96%E3%82%B9%E3%82%AF%E6%A1%88%E5%86%85' alt='定期案内'>
+    </div>
+    <div class='section'>
+      <h2>⑨ LINE登録セクション</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=LINE%E7%89%B9%E5%85%B8+%2F+%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%B3' alt='LINE特典'>
+    </div>
+    <div class='section'>
+      <h2>⑩ フッターエリア</h2>
+      <img class='image-mock' src='https://placehold.co/1200x100?text=%E3%83%95%E3%83%83%E3%82%BF%E3%83%BC+%2F+%E5%88%A9%E7%94%A8%E8%A6%8F%E7%B4%84+%2F+%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B' alt='フッター'>
     </div>
   </div>
 </body>
