@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+  <meta charset='UTF-8'>
+  <title>TOPページ（スマホ対応版）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+    header {
+      background: #111; color: white; padding: 16px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    header .logo { font-size: 20px; font-weight: bold; }
+    header .icons { display: flex; gap: 16px; font-size: 20px; }
+    .wrapper { max-width: 1200px; margin: auto; padding: 20px; background: white; }
+    .section { margin-bottom: 40px; }
+    .section h2 {
+      font-size: 20px;
+      border-left: 5px solid #00b894;
+      padding-left: 10px;
+      margin-bottom: 16px;
+    }
+    .slider-container {
+      overflow: hidden; border-radius: 8px; height: 250px;
+    }
+    .slider-track {
+      display: flex; width: 300%; animation: slide 18s infinite;
+    }
+    .slider-track img {
+      width: 100%; flex-shrink: 0;
+    }
+    @keyframes slide {
+      0% { transform: translateX(0); }
+      33% { transform: translateX(-100%); }
+      66% { transform: translateX(-200%); }
+      100% { transform: translateX(0); }
+    }
+    .image-mock {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+      body { font-size: 15px; }
+      header .icons { gap: 12px; font-size: 24px; }
+      .section h2 { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class='logo'>LOGO</div>
+    <div class='icons'>☰ 🔍 🛒 👤</div>
+  </header>
+  <div class='wrapper'>
+    <div class='section'>
+      <h2>① ファーストビュー</h2>
+      <div class='slider-container'>
+        <div class='slider-track'>
+          <img src='https://tshop.r10s.jp/vapecollection/cabinet/bn/freemax_xfill_top.jpg?fitin=1080%3A1920'>
+          <img src='https://tshop.r10s.jp/vapecollection/cabinet/bn/voopoo_argus-z2_top.jpg?fitin=1080%3A1920'>
+          <img src='https://tshop.r10s.jp/vapecollection/cabinet/empo/con/20250310_new.jpg?fitin=1080%3A1920'>
+        </div>
+      </div>
+    </div>
+    <div class='section'>
+      <h2>② カテゴリ選択</h2>
+      <img class='image-mock' src='https://placehold.co/1200x300?text=カテゴリ選択'>
+    </div>
+  </div>
+</body>
+</html>

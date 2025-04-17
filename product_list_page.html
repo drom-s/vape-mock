@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang='ja'>
+<head>
+  <meta charset='UTF-8'>
+  <title>商品一覧ページ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+    .container { max-width: 1000px; margin: auto; padding: 20px; background: white; }
+    h1 { font-size: 22px; margin-bottom: 20px; }
+    .filters { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .filters select { padding: 6px; }
+    .products { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .product {
+      background: #fff; padding: 10px; border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;
+    }
+    .product img { width: 100%; border-radius: 4px; }
+    .product p { margin: 6px 0; }
+  </style>
+</head>
+<body>
+  <div class='container'>
+    <h1>商品一覧</h1>
+    <div class='filters'>
+      <select>
+        <option>カテゴリを選択</option>
+        <option>デバイス</option>
+        <option>リキッド</option>
+      </select>
+      <select>
+        <option>並び替え</option>
+        <option>人気順</option>
+        <option>新着順</option>
+        <option>価格が安い順</option>
+      </select>
+    </div>
+    <div class='products'>
+      <div class='product'>
+        <img src='https://placehold.co/200x200' alt='商品1'>
+        <p>GOGOStick</p>
+        <p>¥3,980</p>
+      </div>
+      <div class='product'>
+        <img src='https://placehold.co/200x200' alt='商品2'>
+        <p>Mangoリキッド</p>
+        <p>¥1,200</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
