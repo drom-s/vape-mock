@@ -1,81 +1,159 @@
 
 <!DOCTYPE html>
-<html lang='ja'>
+<html lang="ja">
 <head>
-  <meta charset='UTF-8'>
-  <title>商品詳細（スマホ対応版）</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品詳細ページ（改良版）</title>
   <style>
-    body { font-family: sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
-    .container { max-width: 1000px; margin: auto; padding: 20px; background: white; }
-    header {
-      background: #111; color: white; padding: 16px;
-      display: flex; justify-content: space-between; align-items: center;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; background: #f9f9f9; color: #333; line-height: 1.6; }
+    header, footer {
+      background: #111; color: white; padding: 12px 16px;
+      text-align: center;
     }
-    header .logo { font-size: 20px; font-weight: bold; }
-    header .icons { display: flex; gap: 16px; font-size: 20px; }
-    .product-main { display: flex; gap: 24px; flex-wrap: wrap; }
-    .product-image, .product-info {
-      flex: 1 1 100%;
+    .container { padding: 16px; max-width: 640px; margin: auto; background: white; }
+    .product-images img { width: 100%; border-radius: 10px; margin-bottom: 12px; }
+    .product-title { font-size: 20px; font-weight: bold; margin: 8px 0; }
+    .review-summary {
+      font-size: 14px; color: #ffaa00; margin: 4px 0;
     }
-    .product-image img {
-      width: 100%; border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    .review-summary .score {
+      font-weight: bold; color: #333;
     }
-    .product-info h1 { font-size: 22px; margin-bottom: 8px; }
-    .price { color: #e74c3c; font-size: 18px; margin: 8px 0; }
-    .description { font-size: 14px; margin: 12px 0; color: #555; }
-    .btn {
-      display: inline-block;
-      padding: 12px 24px;
-      background: #00b894;
-      color: white; text-decoration: none;
-      border-radius: 6px;
-      margin-top: 12px;
+    .product-subtitle { font-size: 14px; color: #666; margin-bottom: 10px; }
+    .product-price { font-size: 20px; color: #e74c3c; font-weight: bold; margin-bottom: 4px; }
+    .shipping-info, .product-point { font-size: 14px; margin-bottom: 6px; }
+    .cta-buttons { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+    .cta-buttons button {
+      padding: 12px; font-size: 16px; border: none;
+      border-radius: 6px; cursor: pointer;
     }
-    .section { margin-top: 40px; }
-    .section h2 {
-      font-size: 18px;
-      border-left: 5px solid #00b894;
-      padding-left: 10px;
-      margin-bottom: 16px;
+    .buy-btn { background-color: #00b894; color: white; }
+    .cart-btn { background-color: #fff; color: #00b894; border: 2px solid #00b894; }
+
+    .accordion-section { margin-top: 24px; }
+    .accordion h3 {
+      font-size: 16px; background: #eee;
+      padding: 12px; cursor: pointer;
+      border-top: 1px solid #ccc;
+    }
+    .accordion-content {
+      display: none;
+      padding: 12px; background: #fdfdfd;
+      border-bottom: 1px solid #ccc;
+      font-size: 14px;
     }
 
-    @media (max-width: 768px) {
-      .product-info h1 { font-size: 20px; }
-      .btn { font-size: 16px; padding: 14px 20px; }
-      header .icons { font-size: 24px; gap: 12px; }
+    .staff-comment, .reviews, .related-products {
+      margin-top: 24px;
     }
+    .staff-comment {
+      background: #fff3e0;
+      padding: 14px;
+      border-left: 5px solid #ff9800;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .review-item {
+      background: #f8f8f8;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+    .review-stars { color: gold; margin-bottom: 4px; font-size: 14px; }
+    .review-text { font-size: 13px; color: #444; }
+    .more-reviews { text-align: center; margin-top: 12px; }
+    .more-reviews a { color: #00b894; text-decoration: underline; font-size: 14px; }
+
+    .related-scroll {
+      display: flex; overflow-x: auto; gap: 10px;
+      padding-bottom: 10px;
+    }
+    .related-item {
+      min-width: 140px; background: #f0f0f0;
+      border-radius: 8px; padding: 8px;
+      text-align: center; font-size: 13px;
+    }
+    .related-item img { width: 100%; border-radius: 6px; margin-bottom: 6px; }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const headers = document.querySelectorAll(".accordion h3");
+      headers.forEach(header => {
+        header.addEventListener("click", () => {
+          const content = header.nextElementSibling;
+          content.style.display = content.style.display === "block" ? "none" : "block";
+        });
+      });
+    });
+  </script>
 </head>
 <body>
-  <header>
-    <div class='logo'>LOGO</div>
-    <div class='icons'>☰ 🔍 🛒 👤</div>
-  </header>
-  <div class='container'>
-    <div class='product-main'>
-      <div class='product-image'>
-        <img src='https://placehold.co/600x600?text=Product+Image' alt='商品画像'>
+  <header>LOGO</header>
+
+  <div class="container">
+    <div class="product-images">
+      <img src="https://placehold.co/360x360?text=商品画像" alt="商品画像">
+    </div>
+    <div class="product-title">TARLESS NEXT スターターキット</div>
+    <div class="review-summary">★★★★★ <span class="score">4.7</span>（123件）</div>
+    <div class="product-subtitle">初心者にもおすすめ！簡単操作の人気VAPE</div>
+    <div class="product-price">¥5,980（税込）</div>
+    <div class="product-point">+59ポイント獲得（1%還元）</div>
+    <div class="shipping-info">🚚 送料¥500／あと¥2,020で送料無料 📦 4月18日(木)にお届け予定</div>
+
+    <div class="cta-buttons">
+      <button class="buy-btn">今すぐ購入</button>
+      <button class="cart-btn">カートに追加</button>
+    </div>
+
+    <div class="accordion-section accordion">
+      <h3>商品説明</h3>
+      <div class="accordion-content">
+        このVAPEは初心者でも扱いやすく、リキッドの味がしっかりと楽しめる設計です。
       </div>
-      <div class='product-info'>
-        <h1>商品名：Aspire GOGOStick</h1>
-        <p class='price'>¥3,980（税込）</p>
-        <p class='description'>初心者向け使い捨てタイプ。味と吸いごたえにこだわった人気VAPE。</p>
-        <a href='#' class='btn'>カートに入れる</a>
+      <h3>仕様・スペック</h3>
+      <div class="accordion-content">
+        ・サイズ：110mm × 22mm × 18mm<br>
+        ・バッテリー容量：1500mAh<br>
+        ・充電端子：USB-C
+      </div>
+      <h3>配送について</h3>
+      <div class="accordion-content">
+        通常1〜2営業日以内に発送いたします。宅配便でのお届けになります。
       </div>
     </div>
 
-    <div class='section'>
-      <h2>商品説明</h2>
-      <p>初めての方にも使いやすく、最大600回吸引可能なオールインワンVAPE。</p>
+    <div class="staff-comment">
+      <h3>スタッフのおすすめポイント</h3>
+      ・味の濃さと吸いごたえが抜群！<br>
+      ・初心者でも使いやすいデザイン<br>
+      ・ギフトにもぴったり
     </div>
 
-    <div class='section'>
-      <h2>レビュー</h2>
-      <p>★★★★★ - 初めてでも簡単に使えた！</p>
-      <p>★★★★☆ - 味が良かった！</p>
+    <div class="reviews">
+      <h3>ユーザーレビュー</h3>
+      <div class="review-item"><div class="review-stars">★★★★★</div><div class="review-text">初心者でも簡単に使えました！</div></div>
+      <div class="review-item"><div class="review-stars">★★★★☆</div><div class="review-text">デザインがスタイリッシュでお気に入りです。</div></div>
+      <div class="more-reviews"><a href="#">レビューをもっと見る ＞</a></div>
+    </div>
+
+    <div class="related-products">
+      <h3>関連商品</h3>
+      <div class="related-scroll">
+        <div class="related-item">
+          <img src="https://placehold.co/140x140?text=商品A" alt="関連A">
+          <div>ピーチティーリキッド</div>
+        </div>
+        <div class="related-item">
+          <img src="https://placehold.co/140x140?text=商品B" alt="関連B">
+          <div>充電器セット</div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <footer>フッター｜利用規約｜お問い合わせ</footer>
 </body>
 </html>
